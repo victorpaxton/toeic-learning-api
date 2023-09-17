@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:8085}
+  servlet:
+    context-path: /elearning-service
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json
+
+spring:
+  web:
+    resources:
+      static-locations: file:/home
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR
+
+springdoc:
+  override-with-generic-response: false

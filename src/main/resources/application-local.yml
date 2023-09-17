@@ -1,0 +1,53 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /elearning-service
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json
+
+spring:
+  application:
+    name: elearning-local
+    security:
+      jwt:
+        secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+        expiration: 86400000 # 30 seconds
+        refresh-token:
+          expiration: 2419200000 # 1 minute
+        reset-token:
+          expiration: 900000 # 1 minute
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/elearning-app
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: elearning-dev-pool
+      maximum-pool-size: 50 #This means that HikariCP can maintain a maximum of 50 connections in the pool at any given time.
+      max-lifetime: 1800000 # a connection is allowed to live in the pool for a maximum of 30 minutes before it is closed and removed from the pool
+      idle-timeout: 300000 # after 5 minutes, if a connection is idle for longer than 5 minutes, it will be closed and removed from the pool
+      connection-timeout: 30000 #  if a connection is not available within 30 seconds, a SQLException will be thrown
+      minimum-idle: 3 # This means that HikariCP will maintain a minimum of 3 idle connections in the pool at all times
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: t10tqh@gmail.com
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+app:
+  swaggerUrl: http://localhost:8080
